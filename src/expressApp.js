@@ -4,6 +4,7 @@ const url = require('url');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const common = require('./common');
 const pjson = require('../package.json');
@@ -13,6 +14,8 @@ const BITGOEXPRESS_USER_AGENT = 'BitGoExpress/' + pjson.version;
 module.exports = function(args) {
   // Create express app
   const app = express();
+  
+  app.use(cors());
 
   // Set up morgan for logging, with optional logging into a file
   if (args.logfile) {
